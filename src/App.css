@@ -2,28 +2,102 @@
 *::after,
 *::before {
   box-sizing: border-box;
+  margin: 0;
 }
 
 body {
+  background-image: url('Images/e2aiwmfjv0g51.png');
+
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   height: 100vh;
   width: 100vw;
-  padding: 1rem;
+  /* padding: 1rem; */
   overflow-x: hidden;
+  text-transform: capitalize;
+  position: relative;
 }
 
 .App {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(58, 58, 58, 0.5),
+    rgba(250, 25, 0, 0)
+  );
+  background-position: top;
+  background-attachment: fixed;
   text-align: center;
+  top: 0;
+}
+
+.App h1 {
+  color: rgb(251, 255, 26);
+  text-shadow: 0 8px 16px rgba(53, 53, 53, 0.5);
+  padding-top: 0;
+
+  /* backdrop-filter: blur(5rem); */
 }
 
 .pokemonList {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .pokemonCard {
   margin: 2rem;
+  backdrop-filter: blur(5rem);
+  padding: 2rem;
+  width: 17rem;
+  position: relative;
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 16px rgba(53, 53, 53, 0.5);
+  background: rgb(251, 255, 26);
+}
+
+.pokemonCard h2 {
+  margin: 0.8rem 0;
 }
 
 .pagination button {
   margin: 2rem;
+}
+
+.pokemonImageCard {
+  height: 150px;
+  width: 150px;
+}
+
+.loadMoreButton {
+  padding: 1rem;
+  font-weight: 800;
+  border-radius: 0.5rem;
+  box-shadow: 0px 8px 16px rgba(53, 53, 53, 0.2);
+  border: hidden;
+  cursor: pointer;
+  background: rgb(241, 138, 20);
+}
+
+.type {
+  /* background: rgb(214, 61, 61); */
+  margin: 1rem 0;
+  padding: 0.5rem 0rem;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.typeList {
+  /* background: #000; */
+  display: flex;
+  /* justify-items: flex-end; */
+}
+
+.typeList li {
+  list-style: none;
+  margin: 0 0.3rem;
+  padding: 0 0.5rem;
+  background: rgb(255, 255, 255);
+  border-radius: 0.3rem;
+  font-weight: 600;
 }

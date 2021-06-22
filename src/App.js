@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Pokemons from './Components/Pokemons';
 import Pagination from './Components/Pagination';
+import Search from './Components/Search';
 import axios from 'axios';
 import './App.css';
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
-  const [prevPage, setPrevPage] = useState(null);
+  const [filteredPokemon, setFilteredPokemon] = useState([]);
   const [nextPage, setNextPage] = useState(null);
   const [currentPage, setCurrentPage] = useState(
-    'https://pokeapi.co/api/v2/pokemon?limit:18'
+    'https://pokeapi.co/api/v2/pokemon?'
   );
-  const [imageLink, setImageLink] = useState([]);
 
   useEffect(() => {
     let cancel;
@@ -20,9 +20,15 @@ function App() {
         cancelToken: new axios.CancelToken((c) => (cancel = c)),
       })
       .then((res) => {
-        setPokemons(res.data.results);
+        res.data.results.forEach((item) => {
+          axios
+            .get('https://pokeapi.co/api/v2/pokemon/' + item.name)
+            .then((resp) => {
+              setPokemons((prevlist) => [...prevlist, resp.data]);
+              setFilteredPokemon((prevlist) => [...prevlist, resp.data]);
+            });
+        });
         setNextPage(res.data.next);
-        setPrevPage(res.data.previous);
       });
 
     return () => cancel();
@@ -32,20 +38,12 @@ function App() {
     setCurrentPage(nextPage);
   }
 
-  function previousFunct() {
-    setCurrentPage(prevPage);
-  }
-
-  console.log(imageLink);
-
   return (
     <div className="App">
       <h1>Pokemon</h1>
+      <Search />
       <Pokemons pokemons={pokemons} />
-      <Pagination
-        next={nextPage ? nextFunct : null}
-        prev={prevPage ? previousFunct : null}
-      />
+      <Pagination next={nextPage ? nextFunct : null} />
     </div>
   );
 }

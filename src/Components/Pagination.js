@@ -1,10 +1,13 @@
 import React from 'react';
 
-const Pagination = ({ next, prev }) => {
+const Pagination = ({ next }) => {
   return (
     <div className="pagination">
-      {prev ? <button onClick={prev}>Previous</button> : null}
-      {next ? <button onClick={next}>Next</button> : null}
+      {next ? (
+        <button className="loadMoreButton" onClick={next}>
+          Load More
+        </button>
+      ) : null}
     </div>
   );
 };

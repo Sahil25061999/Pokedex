@@ -7,7 +7,7 @@ import './App.css';
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
-  const [filteredPokemon, setFilteredPokemon] = useState([]);
+  const [filteredPokemon, setFilteredPokemon] = useState(pokemons);
   const [nextPage, setNextPage] = useState(null);
   const [currentPage, setCurrentPage] = useState(
     'https://pokeapi.co/api/v2/pokemon?'
@@ -38,11 +38,26 @@ function App() {
     setCurrentPage(nextPage);
   }
 
+  function handleChange(e) {
+    let searchText = e.target.value;
+    console.log(searchText);
+    let filterpokelist = pokemons.filter((items) => {
+      return items.name.toLowerCase().includes(searchText.toLowerCase());
+    });
+
+    setFilteredPokemon(filterpokelist);
+  }
+
   return (
     <div className="App">
-      <h1>Pokemon</h1>
-      <Search />
-      <Pokemons pokemons={pokemons} />
+      <div className="topSection">
+        <h1>Pokemon</h1>
+        <Search handleChange={handleChange} />
+      </div>
+      <div className="PokemonHomeContainer">
+        <Pokemons pokemons={filteredPokemon} />
+      </div>
+
       <Pagination next={nextPage ? nextFunct : null} />
     </div>
   );

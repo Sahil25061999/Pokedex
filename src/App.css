@@ -19,23 +19,35 @@ body {
 }
 
 .App {
-  background-image: linear-gradient(
-    to bottom,
-    rgba(58, 58, 58, 0.5),
-    rgba(250, 25, 0, 0)
-  );
   background-position: top;
   background-attachment: fixed;
   text-align: center;
-  top: 0;
+  position: relative;
 }
 
-.App h1 {
-  color: rgb(251, 255, 26);
-  text-shadow: 0 8px 16px rgba(53, 53, 53, 0.5);
-  padding-top: 0;
+.topSection {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(58, 58, 58, 0.8),
+    rgba(148, 70, 61, 0)
+  );
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  top: 0;
+  backdrop-filter: blur(2px);
+  --webkit-backdrop-filter: blur(2px);
+  --moz-backdrop-filter: blur(2px);
+}
 
-  /* backdrop-filter: blur(5rem); */
+.topSection h1 {
+  color: rgb(255, 255, 255);
+  text-shadow: 0 8px 16px rgba(53, 53, 53, 0.5);
+  padding-top: 2rem;
+}
+
+.PokemonHomeContainer {
+  margin-top: 8rem;
 }
 
 .pokemonList {
@@ -88,9 +100,7 @@ body {
 }
 
 .typeList {
-  /* background: #000; */
   display: flex;
-  /* justify-items: flex-end; */
 }
 
 .typeList li {
@@ -100,4 +110,24 @@ body {
   background: rgb(255, 255, 255);
   border-radius: 0.3rem;
   font-weight: 600;
+}
+
+.inputContainer {
+  margin: 1rem 0;
+  /* background: #000; */
+  height: 2.5rem;
+}
+
+.inputContainer .inputText {
+  width: 50%;
+  height: 100%;
+  border: none;
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.inputText:focus,
+.inputText:hover {
+  border: 2px solid black;
 }
